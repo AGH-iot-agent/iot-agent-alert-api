@@ -8,7 +8,8 @@ on:
 
 jobs:
   pipeline:
-    uses: AGH-iot-agent/common-pipeline/.github/workflows/common-pipeline.yml@feat/IOTAG-01-common-pipeline 
+    uses: AGH-iot-agent/common-pipeline/.github/workflows/common-pipeline.yml@main
+    secrets: inherit
     with:
       service_name: iot-agent-alert-api
       project_type: maven
