@@ -78,9 +78,9 @@ ingress:
   # If we want to have affinity in nginx enabled
   nginx_affinity: true
   # This is for the nginx controllers, this should be set to the controller that is intended to route your service
-  nginx_class: "nginx"
+  nginx_class: "traefik"
   # This is the "new" name for ingress classes, optional
-  ingressClassName: ""
+  ingressClassName: "traefik"
   # The path type
   pathType: ImplementationSpecific # or Prefix
   annotations: {}
@@ -98,9 +98,9 @@ ingress_secondary:
   # If we want to have affinity in nginx enabled
   nginx_affinity: true
   # This is for the nginx controllers, this should be set to the controller that is intended to route your service
-  nginx_class: "nginx"
+  nginx_class: "traefik"
   # This is the "new" name for ingress classes, optional
-  ingressClassName: ""
+  ingressClassName: "traefik"
   # The path type
   pathType: ImplementationSpecific # or Prefix
   annotations: {}
