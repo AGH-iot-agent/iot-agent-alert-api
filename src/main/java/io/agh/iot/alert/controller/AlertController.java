@@ -16,7 +16,7 @@ public class AlertController {
             isAlert,
             temperature,
             threshold,
-            isAlert ? "threshold exceeded" : "normal"
+            isAlert ? "threshold exce" : "normal"
         );
     }
 
