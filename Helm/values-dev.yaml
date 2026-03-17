@@ -86,7 +86,7 @@ ingress:
   pathType: ImplementationSpecific # or Prefix
   annotations: {}
   hosts:
-    - host: iotag-dev
+    - host: iot-agent-dashboard-api-dev.iotag-dev
       paths:
         - /
   tls: []
