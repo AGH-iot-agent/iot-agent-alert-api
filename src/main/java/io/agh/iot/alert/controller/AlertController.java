@@ -1,30 +1,57 @@
 package io.agh.iot.alert.controller;
 
-import lombok.Data;
+import io.agh.iot.alert.model.AlertEvent;
+import io.agh.iot.alert.service.AlertService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class AlertController {
 
+    private final AlertService alertService;
+
+    public AlertController(AlertService alertService) {
+        this.alertService = alertService;
+    }
+
     @PostMapping("/evaluate")
     public AlertResponse evaluate(@RequestBody AlertRequest request) {
-        double temperature = request.getTemperature();
-        double threshold = request.getThreshold() != null ? request.getThreshold() : 30.0;
-        boolean isAlert = temperature > threshold;
-
-        return new AlertResponse(
-            isAlert,
-            temperature,
-            threshold,
-            isAlert ? "threshold exce" : "normal"
-        );
+        return alertService.evaluate(request);
     }
 
-    @Data
-    static class AlertRequest {
-        private Double temperature;
-        private Double threshold;
+    @GetMapping("/alerts/recent")
+    public List<AlertEvent> recentAlerts() {
+        return alertService.recentAlerts();
     }
 
-    record AlertResponse(boolean alert, double temperature, double threshold, String message) {}
+    @GetMapping("/alerts/active")
+    public List<AlertEvent> activeAlerts() {
+        return alertService.activeAlerts();
+    }
+
+    public record AlertRequest(
+        String deviceId,
+        Double temperature,
+        Double threshold,
+        Boolean leak,
+        Boolean anomaly,
+        Double anomalyScore,
+        String krakowZone
+    ) {
+    }
+
+    public record AlertResponse(
+        boolean alert,
+        String severity,
+        String reason,
+        String deviceId,
+        double temperature,
+        double threshold,
+        boolean leak,
+        boolean anomaly,
+        double anomalyScore,
+        String krakowZone
+    ) {
+    }
 }
