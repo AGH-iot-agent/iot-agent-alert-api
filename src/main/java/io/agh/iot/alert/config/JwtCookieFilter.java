@@ -16,6 +16,7 @@ import io.jsonwebtoken.Jwts;
 import java.io.IOException;
 import java.util.Collections;
 
+
 @Component
 public class JwtCookieFilter extends OncePerRequestFilter {
     private final String jwtSecret = System.getenv().getOrDefault("JWT_SECRET", "supersecretkey");
