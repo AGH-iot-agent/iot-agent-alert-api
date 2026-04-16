@@ -194,6 +194,8 @@ extraEnvs:
     value: gte
   - name: SPRING_DATASOURCE_PASSWORD
     value: gte
+  - name: JWT_SECRET
+    value: supersecretkey
 
 # stdin and tty status
 tty: false
