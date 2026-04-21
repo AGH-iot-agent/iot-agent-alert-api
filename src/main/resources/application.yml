@@ -7,7 +7,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://iot-agent-auth-dev.iotag-dev.com/realms/master
+          jwk-set-uri: http://iot-agent-authentication:8080/.well-known/jwks.json
   application:
     name: iot-agent-alert-api
   datasource:
