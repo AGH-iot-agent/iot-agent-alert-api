@@ -1,0 +1,39 @@
+# Konfiguracja JWT Keycloak
+server:
+  port: 8080
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://iot-agent-authentication:8080/.well-known/jwks.json
+  application:
+    name: iot-agent-alert-api
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://iot-agent-database:5432/iot_agent}
+    username: ${SPRING_DATASOURCE_USERNAME:gte}
+    password: ${SPRING_DATASOURCE_PASSWORD:gte}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  flyway:
+    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
