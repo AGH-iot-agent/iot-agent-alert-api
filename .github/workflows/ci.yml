@@ -8,6 +8,7 @@ on:
 
 jobs:
   set-env:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     outputs:
       values_file: ${{ steps.vars.outputs.values_file }}
